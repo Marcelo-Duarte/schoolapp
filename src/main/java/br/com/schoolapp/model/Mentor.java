@@ -1,6 +1,7 @@
 package br.com.schoolapp.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,7 @@ public class Mentor {
         this.name = name;
         this.lastname = lastname;
         this.registration = registration;
+        this.mentorings = new ArrayList<>();
     }
 
     public Mentor() {}

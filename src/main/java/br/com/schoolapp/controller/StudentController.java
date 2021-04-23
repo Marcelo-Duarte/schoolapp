@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.List;
 
@@ -27,7 +26,6 @@ public class StudentController {
 
     @PostMapping("/addstudent")
     @ApiOperation(value = "Adds a new Student")
-    @Transactional
     public ResponseEntity<StudentDto> addStudent(@RequestBody StudentDto studentDto, UriComponentsBuilder uriBuilder) {
         StudentDto studentResponse = studentService.save(studentDto);
 
@@ -38,7 +36,6 @@ public class StudentController {
 
     @PutMapping("/changeclassroom/{idStudent}")
     @ApiOperation(value = "Changes a Student's classroom")
-    @Transactional
     public ResponseEntity<StudentDto> changeClassroom(@PathVariable long idStudent, @RequestBody long idClassroom) {
         StudentDto studentDto = studentService.changeClassroom(idStudent, idClassroom);
 
@@ -47,7 +44,6 @@ public class StudentController {
 
     @DeleteMapping("/deletestudent/{idStudent}")
     @ApiOperation(value = "Deletes a Student")
-    @Transactional
     public ResponseEntity deleteStudent(@PathVariable long idStudent) {
         studentService.delete(idStudent);
 

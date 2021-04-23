@@ -40,11 +40,11 @@ public class StudentService {
         }
     }
 
-    public StudentDto changeClassroom(long idStudent, long idClassroom) {
+    public StudentDto changeClassroom(long studentId, long classroomId) {
         try {
-            Student student = studentRepository.getOne(idStudent);
+            Student student = studentRepository.getOne(studentId);
 
-            Classroom classroom = classroomRepository.getOne(idClassroom);
+            Classroom classroom = classroomRepository.getOne(classroomId);
 
             student.getClassroom().decrementSize();
 
