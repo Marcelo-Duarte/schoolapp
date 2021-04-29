@@ -74,8 +74,7 @@ public class MentoringService {
     }
 
     public MentoringDto convertToDto(Mentoring mentoring) {
-        MentoringDto mentoringDto = new MentoringDto(mentoring.getMentor().getId(), mentoring.getStudent().getId());
-        mentoringDto.setId(mentoring.getId());
+        MentoringDto mentoringDto = new MentoringDto(mentoring.getId(), mentoring.getMentor().getId(), mentoring.getStudent().getId());
 
         return mentoringDto;
     }

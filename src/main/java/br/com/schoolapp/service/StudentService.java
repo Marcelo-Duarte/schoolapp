@@ -73,8 +73,7 @@ public class StudentService {
     }
 
     public StudentDto convertToDto(Student student) {
-        StudentDto studentDto = new StudentDto(student.getName(), student.getLastName(), student.getRegistration(), student.getClassroom().getId());
-        studentDto.setId(student.getId());
+        StudentDto studentDto = new StudentDto(student.getId(), student.getName(), student.getLastName(), student.getRegistration(), student.getClassroom().getId(), null);
 
         try {
             studentDto.setMentorName(student.getMentoring().getMentor().getName());

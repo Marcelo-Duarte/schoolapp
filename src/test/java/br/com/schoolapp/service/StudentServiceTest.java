@@ -35,7 +35,7 @@ public class StudentServiceTest {
         when(classroomRepository.getOne(0L)).thenReturn(classroom);
         when(studentRepository.save(any(Student.class))).thenReturn(student);
 
-        StudentDto studentDto = studentService.save(new StudentDto("name", "lastName", 2222, 0));
+        StudentDto studentDto = studentService.save(new StudentDto(0, "name", "lastName", 2222, 0, null));
 
         assertEquals("name", studentDto.getName());
         assertEquals("lastName", studentDto.getLastName());
@@ -55,18 +55,20 @@ public class StudentServiceTest {
         verify(studentRepository, times(1)).deleteById(anyLong());
     }
 
-//    @Test
-//    public void givenStudentIdAndClassroomIdChangesStudentsClassroom() {
-//        Classroom oldClassroom = new Classroom("oldOne", 2020);
-//        Classroom newClassroom = new Classroom("newOne", 2021);
-//
-//        when(studentRepository.getOne(anyLong())).thenReturn(new Student("name", "lastName", 1111, oldClassroom));
-//        when(classroomRepository.getOne(anyLong())).thenReturn(newClassroom);
-//
-//        StudentDto studentDto = studentService.changeClassroom(0, 0);
-//
-//        Assertions.assertEquals("oldOne", studentDto.);
-//    }
+    @Test
+    public void givenStudentIdAndClassroomIdChangesStudentsClassroom() {
+        Classroom oldClassroom = new Classroom("oldOne", 2020);
+        oldClassroom.setId(0);
+        Classroom newClassroom = new Classroom("newOne", 2021);
+        newClassroom.setId(1);
+
+        when(studentRepository.getOne(anyLong())).thenReturn(new Student("name", "lastName", 1111, oldClassroom));
+        when(classroomRepository.getOne(anyLong())).thenReturn(newClassroom);
+
+        StudentDto studentDto = studentService.changeClassroom(0, 0);
+
+        assertEquals(1, studentDto.getIdClassroom());
+    }
 
     @Test
     public void givenStudentMustReturnStudentDto() {
@@ -82,7 +84,7 @@ public class StudentServiceTest {
 
     @Test
     public void givenStudentDtoMustReturnStudent() {
-        StudentDto studentDto = new StudentDto("name", "lastName", 2222, 0);
+        StudentDto studentDto = new StudentDto(0, "name", "lastName", 2222, 0, null);
 
         when(classroomRepository.getOne(0L)).thenReturn(new Classroom("name", 2021));
 

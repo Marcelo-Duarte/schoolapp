@@ -45,7 +45,7 @@ public class MentoringServiceTest {
         when(studentRepository.getOne(anyLong())).thenReturn(student);
         when(mentoringRepository.save(any())).thenReturn(mentoring);
 
-        MentoringDto mentoringDto = mentoringService.save(new MentoringDto(1, 1));
+        MentoringDto mentoringDto = mentoringService.save(new MentoringDto(0, 0, 0));
 
         assertEquals(0, mentoringDto.getIdMentor());
         assertEquals(0, mentoringDto.getIdStudent());

@@ -13,6 +13,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -53,7 +55,7 @@ public class MentorServiceTest {
 
         when(mentorRepository.save(any(Mentor.class))).thenReturn(mentor);
 
-        MentorDto mentorDto = mentorService.save(new MentorDto("name", "lastName", 2222));
+        MentorDto mentorDto = mentorService.save(new MentorDto(0, "name", "lastName", 2222, new ArrayList<>()));
 
         assertEquals("name", mentorDto.getName());
         assertEquals("lastName", mentorDto.getLastName());
@@ -62,7 +64,7 @@ public class MentorServiceTest {
 
     @Test
     public void givenMentorDtoMustReturnMentor() {
-        MentorDto mentorDto = new MentorDto("name", "lastName", 1111);
+        MentorDto mentorDto = new MentorDto(0, "name", "lastName", 1111, new ArrayList<>());
 
         Mentor mentor = mentorService.convertToEntity(mentorDto);
 

@@ -57,8 +57,7 @@ public class MentorService {
     }
 
     public MentorDto convertToDto(Mentor mentor) {
-        MentorDto mentorDto = new MentorDto(mentor.getName(), mentor.getLastname(), mentor.getRegistration());
-        mentorDto.setId(mentor.getId());
+        MentorDto mentorDto = new MentorDto(mentor.getId(), mentor.getName(), mentor.getLastname(), mentor.getRegistration(), new ArrayList<>());
 
         try {
             List<Student> students = (mentor.getMentorings().stream()
